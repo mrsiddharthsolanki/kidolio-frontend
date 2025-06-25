@@ -326,7 +326,7 @@ const Index = () => {
                         </svg>
                       </div>
                       <span className="text-lg font-bold text-gray-800 dark:text-white">
-                        Bolt
+                        Built with Bolt.new
                       </span>
                     </div>
                   </div>

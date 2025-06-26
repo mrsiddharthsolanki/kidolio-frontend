@@ -1,6 +1,11 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
+interface TeamMember {
+  name: string;
+  role?: string;
+}
+
 interface SEOProps {
   title?: string;
   description?: string;
@@ -8,29 +13,50 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  teamMembers?: TeamMember[]; // New prop for team members
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Kidolio - The Future of Family Education',
-  description = 'Empower your family\'s learning journey with our secure, AI-powered platform that connects parents, children, and verified educators.',
-  keywords = 'family education, online learning, children education, parent dashboard, educational technology, AI learning, secure education platform',
+  title = 'Empowering Families.Kidolio Universe',
+  description = 'Track. Grow. Thrive. Manage records, monitor progress, and unlock every child’s full potential — all in one intelligent universe.',
+  keywords = 'family education, online learning, children education, parent dashboard, educational technology, AI learning, secure education platform , document management, child development, family records, educational resources, personalized learning, early childhood education, parenting tools, family engagement, child growth tracking, secure family records, Kidolio, Kidolio Universe, Kidolio platform, Kidolio app, Kidolio education, Kidolio family, Kidolio learning',
   image = '/images/og-image.jpg',
   url = 'https://kidolio.com',
-  type = 'website'
+  type = 'website',
+  teamMembers = []
 }) => {
   const siteTitle = 'Kidolio';
   const fullTitle = title === siteTitle ? title : `${title} | ${siteTitle}`;
+
+  // Add team member names and roles to keywords and description if provided
+  const teamNames = teamMembers.map(m => m.name).join(', ');
+  const teamRoles = teamMembers.map(m => m.role).filter(Boolean).join(', ');
+  const extendedKeywords = teamMembers.length > 0 ? `${keywords}, ${teamNames}, ${teamRoles}` : keywords;
+  const extendedDescription = teamMembers.length > 0 ? `${description} Meet our team: ${teamNames}${teamRoles ? ' (' + teamRoles + ')' : ''}.` : description;
+
+  // Structured data for team members (JSON-LD)
+  const teamStructuredData = teamMembers.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': siteTitle,
+    'url': url,
+    'employee': teamMembers.map(member => ({
+      '@type': 'Person',
+      'name': member.name,
+      'jobTitle': member.role || ''
+    }))
+  } : null;
 
   return (
     <Helmet>
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
+      <meta name="description" content={extendedDescription} />
+      <meta name="keywords" content={extendedKeywords} />
 
       {/* Open Graph Meta Tags */}
       <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={extendedDescription} />
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
@@ -39,8 +65,15 @@ const SEO: React.FC<SEOProps> = ({
       {/* Twitter Card Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:description" content={extendedDescription} />
       <meta name="twitter:image" content={image} />
+
+      {/* Structured Data for Team Members */}
+      {teamStructuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(teamStructuredData)}
+        </script>
+      )}
 
       {/* Additional Meta Tags */}
       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
@@ -49,6 +82,7 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta name="author" content="Kidolio" />
+      <meta name="google-site-verification" content="e2usAklZm502nMbsmJKs0lA6Ynr6EPWg-4P70AO9jpM" />
 
       {/* Canonical URL */}
       <link rel="canonical" href={url} />
@@ -65,4 +99,4 @@ const SEO: React.FC<SEOProps> = ({
   );
 };
 
-export default SEO; 
+export default SEO;

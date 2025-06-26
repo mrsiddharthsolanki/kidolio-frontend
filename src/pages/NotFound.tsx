@@ -2,6 +2,7 @@ import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { FileX, Home, ArrowLeft } from "lucide-react";
+import SEO from '../components/SEO';
 
 
 const NotFound = () => {
@@ -15,7 +16,8 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden relative">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-all duration-700 ease-in-out">
+      <SEO title="404 Not Found | Kidolio" description="Sorry, the page you are looking for does not exist on Kidolio." />
       {/* Enhanced animated background shapes */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-br from-blue-400 to-purple-400 opacity-20 rounded-full blur-3xl animate-float-slow z-0" />
       <div className="absolute -bottom-40 -right-40 w-[32rem] h-[32rem] bg-gradient-to-tr from-purple-400 to-blue-400 opacity-20 rounded-full blur-3xl animate-float-slower z-0" />

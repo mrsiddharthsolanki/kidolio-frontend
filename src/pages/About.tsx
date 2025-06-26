@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Brain,File,Shield,Lock, Award, Star, ArrowRight, Globe } from 'lucide-react';
+import { Users, Brain, File, Shield, Lock, Award, Star, ArrowRight, Globe } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const About = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-all duration-700 ease-in-out flex flex-col relative overflow-hidden" style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+      <SEO title="About Kidolio" description="Learn more about Kidolio, our mission, and how we empower families and educators worldwide." />
       {/* Animated Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/20 to-purple-500/20 dark:from-blue-400/10 dark:to-purple-400/10 rounded-full blur-3xl transition-all duration-1000 ease-out left-[-15%] top-[-15%] animate-float" />
@@ -46,7 +48,7 @@ const About = () => {
             <h2 className="text-3xl font-black mb-4 text-blue-600 dark:text-blue-400 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Our Vision</h2>
             <p className="text-lg text-gray-700 dark:text-gray-300 mb-8">
               To empower families by securely managing a child’s journey from birth to growth through one connected, intelligent platform.
-We aim to simplify records, support learning, and unlock every child’s potential.
+              We aim to simplify records, support learning, and unlock every child’s potential.
             </p>
             <h2 className="text-2xl font-bold mb-4 text-purple-600 dark:text-purple-400">What Makes Us Unique?</h2>
             <ul className="space-y-4">
@@ -87,8 +89,8 @@ We aim to simplify records, support learning, and unlock every child’s potenti
       <footer className="relative z-10 w-full py-16 px-4 sm:px-8 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-auto">
         <div className="max-w-5xl mx-auto text-center animate-fadeInUp">
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-           Ready to unlock
-your child’s full potential?
+            Ready to unlock
+            your child’s full potential?
           </h2>
           <Link to="/signup" className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 font-medium transform hover:scale-105 hover:from-blue-500 hover:to-purple-500 relative overflow-hidden mt-4">
             <span className="relative z-10">Start your free trial</span>

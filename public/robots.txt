@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://kidolio.com/sitemap.xml
+Sitemap: https://kidolio.netlify.app/sitemap.xml
 
 # Disallow admin and private routes
 Disallow: /admin/
@@ -14,4 +14,4 @@ Disallow: /signin
 Disallow: /signup
 
 # Crawl-delay for all bots
-Crawl-delay: 10 
+Crawl-delay: 10

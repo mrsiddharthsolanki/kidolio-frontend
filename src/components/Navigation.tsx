@@ -153,6 +153,15 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
         <span className="hidden md:inline">Profile</span>
         {renderActiveIndicator(isActiveNavItem('parent-profile'))}
       </Button>
+      <Button 
+        variant="ghost" 
+        onClick={() => handleNavigation('/social')}
+        className={getButtonClasses(location.pathname === '/social')}
+      >
+        <Users className="w-4 h-4" />
+        <span className="hidden md:inline">Social</span>
+        {renderActiveIndicator(location.pathname === '/social')}
+      </Button>
     </>
   );
 
@@ -185,6 +194,15 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
         <User className="w-4 h-4" />
         <span className="hidden md:inline">Profile</span>
         {renderActiveIndicator(isActiveNavItem('child-dashboard'))}
+      </Button>
+      <Button 
+        variant="ghost" 
+        onClick={() => handleNavigation('/social')}
+        className={getButtonClasses(location.pathname === '/social')}
+      >
+        <Users className="w-4 h-4" />
+        <span className="hidden md:inline">Social</span>
+        {renderActiveIndicator(location.pathname === '/social')}
       </Button>
     </>
   );
@@ -226,6 +244,15 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
         <User className="w-4 h-4" />
         <span className="hidden md:inline">Profile</span>
         {renderActiveIndicator(isActiveNavItem('official-profile'))}
+      </Button>
+      <Button 
+        variant="ghost" 
+        onClick={() => handleNavigation('/social')}
+        className={getButtonClasses(location.pathname === '/social')}
+      >
+        <Users className="w-4 h-4" />
+        <span className="hidden md:inline">Social</span>
+        {renderActiveIndicator(location.pathname === '/social')}
       </Button>
     </>
   );
@@ -316,6 +343,13 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
                     <User className="w-4 h-4 mr-2" />
                     Profile
                   </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleNavigation('/social')}
+                    className={location.pathname === '/social' ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : ''}
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Social
+                  </DropdownMenuItem>
                 </>
               )}
               {user.role === 'child' && (
@@ -340,6 +374,13 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
                   >
                     <User className="w-4 h-4 mr-2" />
                     Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleNavigation('/social')}
+                    className={location.pathname === '/social' ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400' : ''}
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Social
                   </DropdownMenuItem>
                 </>
               )}
@@ -372,6 +413,13 @@ const Navigation: React.FC<NavigationProps> = ({ onTabChange, activeTab }) => {
                   >
                     <User className="w-4 h-4 mr-2" />
                     Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => handleNavigation('/social')}
+                    className={getButtonClasses(location.pathname === '/social')}
+                  >
+                    <Users className="w-4 h-4 mr-2" />
+                    Social
                   </DropdownMenuItem>
                 </>
               )}

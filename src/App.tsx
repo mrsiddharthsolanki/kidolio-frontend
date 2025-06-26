@@ -6,11 +6,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import RouteGuard from "@/components/RouteGuard";
+// import RouteGuard from "@/components/RouteGuard";
 import Navigation from "./components/Navigation";
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import { Suspense, lazy } from 'react';
+import { SocketProvider } from './contexts/SocketContext';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Lazy loaded components
 const SplashScreen = lazy(() => import("./pages/SplashScreen"));
@@ -31,6 +33,7 @@ const OfficerProfile = lazy(() => import("./components/official/OfiicerProfile")
 const About = lazy(() => import("./pages/About"));
 const ComingSoon = lazy(() => import('./pages/ComingSoon'));
 const Support = lazy(() => import("./pages/Support"));
+const SocialPage = lazy(() => import("./components/social/SocialPage"));
 
 
 const queryClient = new QueryClient();
@@ -245,6 +248,18 @@ const AppRoutes = () => {
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/support" element={<Support />} />
         
+        {/* Social page route - protected */}
+        <Route 
+          path="/social" 
+          element={
+            <ProtectedRoute>
+              <Suspense fallback={<LoadingSpinner message="Loading social features..." />}>
+                <SocialPage />
+              </Suspense>
+            </ProtectedRoute>
+          } 
+        />
+        
         {/* Catch-all route */}
         <Route path="*" element={<NotFound />} />
         {/*footer links*/}
@@ -257,23 +272,35 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <AuthProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
-                <AppRoutes />
-              </div>
-            </BrowserRouter>
-          </TooltipProvider>
-        </AuthProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>
+  <HelmetProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <AuthProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <AuthWrapper>
+                  <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-all duration-300">
+                    <AppRoutes />
+                  </div>
+                </AuthWrapper>
+              </BrowserRouter>
+            </TooltipProvider>
+          </AuthProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  </HelmetProvider>
 );
+
+// AuthWrapper injects SocketProvider with userId
+const AuthWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user, isLoading } = useAuth();
+  if (isLoading) return null;
+  if (!user) return <>{children}</>;
+  return <SocketProvider userId={user.id}>{children}</SocketProvider>;
+};
 
 export default App;

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all duration-500">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 text-gray-900 dark:text-white transition-all duration-700 ease-in-out flex flex-col relative overflow-hidden">
+      <SEO title="Terms & Conditions | Kidolio" description="Read the terms and conditions for using Kidolio, the family education platform." />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <Link 
           to="/"
@@ -97,4 +99,4 @@ const Terms = () => {
   );
 };
 
-export default Terms; 
+export default Terms;

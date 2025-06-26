@@ -309,25 +309,49 @@ const Index = () => {
         }`}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center justify-between h-16 lg:h-20">
-              <div className="flex items-center space-x-8">                <Link 
-              to="/" 
-              className={`transition-transform duration-300 hover:scale-105 animate-fadeInUp`}
-              style={{ animationDelay: '0.1s' }}
-            >
-              <div className="h-12">
-                <img 
-                  src="/logo.png"
-                  alt="Kidolio"
-                  className="h-full w-auto dark:hidden" 
-                />
-                <img 
-                  src="./logo.png"
-                  alt="Kidolio logo"
-                  className="h-full w-auto hidden dark:block" 
-                />
-              </div>
-            </Link>
-            
+              <div className="flex items-center space-x-8">
+                <Link 
+                  to="/" 
+                  className={`transition-transform duration-300 hover:scale-105 animate-fadeInUp flex items-center space-x-3`}
+                  style={{ animationDelay: '0.1s' }}
+                >
+                  <div className="flex items-center space-x-3">
+                    {/* Kidolio Logo */}
+                    <div className="h-12">
+                      <img 
+                        src="/logo.png"
+                        alt="Kidolio"
+                        className="h-full w-auto dark:hidden" 
+                      />
+                      <img 
+                        src="./logo.png"
+                        alt="Kidolio logo"
+                        className="h-full w-auto hidden dark:block" 
+                      />
+                    </div>
+                    
+                    {/* Separator and Bolt Logo */}
+                    <div className="flex items-center space-x-3">
+                      <span className="text-gray-400 dark:text-gray-500 text-xl font-light">|</span>
+                      
+                      {/* Bolt Logo - Using Zap icon from Lucide */}
+                      <div className="flex items-center space-x-2">
+                        <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
+                          <svg 
+                            className="w-5 h-5 text-white" 
+                            fill="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                          </svg>
+                        </div>
+                        <span className="text-lg font-bold text-gray-800 dark:text-white">
+                          Built with Bolt.new
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
               </div>
               
               <div className="flex items-center space-x-4">
@@ -360,9 +384,6 @@ const Index = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   </Link>
                 </div>
-                
-                
-                
 
                 <button 
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

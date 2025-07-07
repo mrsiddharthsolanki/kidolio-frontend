@@ -336,14 +336,15 @@ const Index = () => {
                       
                       {/* Bolt Logo - Using Zap icon from Lucide */}
                       <div className="flex items-center space-x-2">
-                        <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center shadow-lg">
-                          <svg 
-                            className="w-5 h-5 text-white" 
-                            fill="currentColor" 
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                          </svg>
+                        <div className="w-8 h-8 flex items-center justify-center shadow-lg">
+                          <button onClick={() => window.location.reload()} className="focus:outline-none">
+                            <img 
+                              src="/boltLogo.png" 
+                              alt="Bolt Logo" 
+                              className="w-8 h-8 object-contain" 
+                              style={{ pointerEvents: 'none' }}
+                            />
+                          </button>
                         </div>
                         <span className="text-lg font-bold text-gray-800 dark:text-white">
                           Built with Bolt.new
